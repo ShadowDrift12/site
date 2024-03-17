@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .animated {
+            transition: transform 0.3s;
+        }
+        .animated:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Тест</h1>
+    <div id="quiz">
+        <div class="question">
+            <p>Вопрос 1: Какого цвета небо?</p>
+            <input type="radio" name="q1" value="a"> Красное<br>
+            <input type="radio" name="q1" value="b"> Зеленое<br>
+            <input type="radio" name="q1" value="c"> Синее<br>
+        </div>
+        <div class="question">
+            <p>Вопрос 2: Сколько будет 2 + 2?</p>
+            <input type="radio" name="q2" value="a"> 3<br>
+            <input type="radio" name="q2" value="b"> 4<br>
+            <input type="radio" name="q2" value="c"> 5<br>
+        </div>
+        <div class="question">
+            <p>Введите ваше имя:</p>
+            <input type="text" id="name" placeholder="Ваше имя">
+        </div>
+    </div>
+    <button class="animated" onclick="checkAnswers()">Проверить ответы</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        window.onload = function() {
+            alert("Добро пожаловать!");
+        };
+
+        function checkAnswers() {
+            let score = 0;
+            const q1Answer = document.querySelector('input[name="q1"]:checked');
+            const q2Answer = document.querySelector('input[name="q2"]:checked');
+            const name = document.getElementById("name").value;
+
+            if (q1Answer && q1Answer.value === "c") score++;
+            if (q2Answer && q2Answer.value === "b") score++;
+
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `${name}, вы набрали ${score} из 2 баллов.`;
+
+            if (score === 2) {
+                document.body.style.backgroundColor = "lightgreen";
+            } else {
+                document.body.style.backgroundColor = "lightpink";
+            }
+        }
+    </script>
+</body>
+</html>
